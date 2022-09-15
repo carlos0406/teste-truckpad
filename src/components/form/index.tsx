@@ -45,6 +45,7 @@ type CreateDriverFormData = {
   address_neighborhood: string,
   address_postal_code: string,
   address_complement: string
+  ativo: boolean
 }
 
 interface FormProps {
@@ -57,7 +58,7 @@ export default function Form({ driver }: FormProps) {
   const router = useRouter()
   const createDriver = useMutation(
     async (driverForm: CreateDriverFormData) => {
-      await api.post('api/drivers', { driver: driverForm })
+      await api.post('api/drivers', { driver: { ...driverForm, ativo: true } })
     },
     {
       onSuccess: () => {
@@ -100,12 +101,52 @@ export default function Form({ driver }: FormProps) {
         router.push('/')
       },
       onError: (error) => {
-        console.log(error)
+        toast.error('Erro ao tentar enviar formulário, corrija os campos em vermelho', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         router.push('/')
       }
     }
   )
 
+  const inativeDriver = useMutation(
+    async () => {
+      await api.put(`api/drivers/${driver?.id}`, { driver: { ...driver, ativo: false } })
+    },
+    {
+      onSuccess: () => {
+        toast.success('Motorista Inativado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+        queryClient.invalidateQueries('drivers')
+        router.push('/')
+      },
+      onError: () => {
+        toast.error('Erro ao tentar enviar formulário, corrija os campos em vermelho', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        router.push('/')
+      }
+    }
+  )
   const { register, handleSubmit, formState } = useForm<CreateDriverFormData>({
     defaultValues: driver ? driver : {},
     resolver: yupResolver(createUserFormSchema)
@@ -114,9 +155,11 @@ export default function Form({ driver }: FormProps) {
   const handleCreateUser: SubmitHandler<CreateDriverFormData> = async data => {
     if (driver) {
       await updateDriver.mutateAsync(data)
+    } else {
+      await createDriver.mutateAsync(data)
     }
-    await createDriver.mutateAsync(data)
   }
+
   function onError() {
     toast.error('Erro ao tentar enviar formulário, corrija os campos em vermelho', {
       position: "top-center",
@@ -127,6 +170,10 @@ export default function Form({ driver }: FormProps) {
       draggable: true,
       progress: undefined,
     });
+  }
+
+  async function handleInativeUser() {
+    await inativeDriver.mutateAsync()
   }
   const { isWideVersion } = useSizes();
   return (
@@ -324,6 +371,15 @@ export default function Form({ driver }: FormProps) {
               <Link href="/">
                 <Button colorScheme="whiteAlpha" w="100%">Cancelar</Button>
               </Link>
+              {driver && <Button
+                colorScheme="yellow"
+                type="button"
+                w="100%"
+                textColor="whiteAlpha.900"
+                onClick={() => { handleInativeUser() }}
+              >
+                Inativar Motorista
+              </Button>}
               <Button
                 colorScheme="green"
                 type="submit"

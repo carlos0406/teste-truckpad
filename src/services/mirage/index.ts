@@ -73,6 +73,9 @@ export function makeServer() {
     address_complement(){
       return "Complemento"
     },
+    ativo(){
+      return true
+    }
       })
     },
     seeds(server) {

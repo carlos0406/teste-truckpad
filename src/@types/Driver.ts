@@ -16,5 +16,6 @@ export type Driver = {
   address_number: number,
   address_neighborhood: string,
   address_postal_code: string,
-  address_complement: string
+  address_complement: string,
+  ativo: boolean
 }

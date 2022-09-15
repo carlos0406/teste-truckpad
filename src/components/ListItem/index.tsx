@@ -1,6 +1,6 @@
 import { Button, Link as ChakraLink, Td, Text, Tr } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { BiEdit } from "react-icons/bi";
+import { BiEdit, BiX } from "react-icons/bi";
 import { Driver } from "../../@types/Driver";
 import { useSizes } from "../../hooks/useSizes";
 import Link from "next/link";
@@ -14,13 +14,12 @@ export function ListItem({ driver }: ListItemPros) {
   return (
     <Tr>
       <Td>
-        <Text fontWeight="bold" fontSize={["12", "14", "16"]}>
+        <Text fontWeight="bold" fontSize={["12", "14", "16"]} color={driver.ativo ? "" : "red.500"}>
           {driver.name}
         </Text>
       </Td>
       <Td fontSize={["10", "14", "16"]} fontWeight="bold">
-        {" "}
-        {driver.cpf}{" "}
+        {driver.cpf}
       </Td>
       {isWideVersion && <Td w="8">{driver.phone}</Td>}
       {isWideVersion && <Td w="8">{formattedData}</Td>}
@@ -30,16 +29,25 @@ export function ListItem({ driver }: ListItemPros) {
         </Td>
       )}
       <Td>
-        <Link href={`edit/${driver.id}`}>
-          <ChakraLink
-            colorScheme="twitter"
-            type="submit"
-            variant="ghost"
-            size={["sm", "md"]}
-          >
-            <BiEdit size={!isSmallVersion ? 30 : 20} />
-          </ChakraLink>
-        </Link>
+        {driver.ativo && (
+          <Link href={`edit/${driver.id}`}>
+            <ChakraLink
+              colorScheme="twitter"
+              type="submit"
+              variant="ghost"
+              size={["sm", "md"]}
+            >
+              <BiEdit size={!isSmallVersion ? 30 : 20} />
+            </ChakraLink>
+          </Link>
+        )}
+        <ChakraLink
+          colorScheme="twitter"
+          type="submit"
+          variant="ghost"
+          size={["sm", "md"]}
+        >
+        </ChakraLink>
       </Td>
     </Tr>
   );

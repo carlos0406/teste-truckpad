@@ -15,6 +15,7 @@ import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { ListItem } from "../components/ListItem"
 import { useSizes } from "../hooks/useSizes"
+import { BiEdit, BiX } from "react-icons/bi"
 
 export default function UsersList() {
   const { data, isLoading, error, isFetching } = useDrivers()
@@ -29,14 +30,15 @@ export default function UsersList() {
           bg="gray.800">
           <Flex mb="8" justify="space-between" align="center" p={['6', '8']} flexDirection="column">
             <Heading size="lg" fontWeight="normal">
-              Motoristas{' '}
+              Motoristas
               {!isLoading && isFetching && (
                 <Spinner size="sm" color="gray.500" ml="4" />
               )}
             </Heading>
-            <Divider my="6" borderColor="gray.700" />
           </Flex>
-
+          <Flex justify="center" align="center" px="6" flexDirection="row" backgroundColor="gray.800">
+            <BiEdit size={!isSmallVersion ? 25 : 20} /> : Editar Motorista
+          </Flex >
           {isLoading ? (
             <Flex justify="center">
               <Spinner />
