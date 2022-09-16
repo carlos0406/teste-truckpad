@@ -1,34 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Teste front-end truckpad
 
-## Getting Started
+## Instalação:
 
-First, run the development server:
+## pré-requisitos
+
+Primeiramente é preciso ter o [nodejs](https://nodejs.org/en/download/). e o [git](https://git-scm.com/downloads) instalados em sua maquina. além disso temos como instalação opcional o [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable), ele é um substituo para algumas funções que já vem no nodejs, a instalação do node continua obrigatoria mesmo caso opte por usar o yarn.
+
+<br/>
+
+## Como Iniciar o projeto ?
 
 ```bash
-npm run dev
-# or
-yarn dev
+# abra o terminal/cmd e clone o repositorio do projeto usando o git
+$ git clone https://github.com/carlos0406/nlw6-react nlw6
+
+# Acesse a pasta do projeto no terminal/cmd com o comando
+$ cd truckpad
+
+# Em Seguida é preciso fazer a instalação das dependencias, para isso use o comando
+$ npm install
+# ou
+$ yarn
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+#ou
+$ yarn dev
+# O servidor inciará na porta:3000 - caso nao abra automaticamente acesse <http://localhost:3000>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Ferrmantes usadas no desenvolvimento:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Framework:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+o Framework usado foi o [NextJS](https://nextjs.org/), um framework que usa o React,
+o projeto foi criado a partir de um projeto padrão que pode ser obtido ao usar os comandos:
 
-## Learn More
+```
+npx create-next-app@latest
+# ou
+yarn create next-app
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Bibliotecas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O projeto foi desenvolvida usando várias bibliotecas para que não fosse preciso desenvolver várias funcionalidades do completo zero, assim facilitando o desenvolvimento.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### chakra-ui:
 
-## Deploy on Vercel
+Para a estilização do site foi usada a biblioteca [chakra-ui](https://chakra-ui.com/), é um biblioteca que se baseia em fazer interface declarativa, onde podemos criar interfaces de maneira mais rapida sem precisar fazer escrita de css do zero.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### MirageJS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Já que não existia uma API consumir e enviar os dados foi usado a biblioteca
+[MirageJS](https://miragejs.com/), onde em desenvolvimento podemos criar rotas falsas de uma api e ter um banco de dados em memória, onde podemos facilmente criar modelos e gerar registros falsos, adicionar novos registros e editar os registros.
+
+### Axios & React-query
+
+Para fazer a comunicação com a API foi usado a biblioteca [axios](https://axios-http.com/ptbr/docs/intro), um http client simples de usar para fazer nossas requisições, além disso também foi usado o [react-query](https://tanstack.com/query/v4/docs/overview), para que fosse possível ter um melhor controle dos dados além de um melhor armazenamento, o react query permite que ao fazer uma requisição seja possível armazenar os dados e renovar eles de maneira automatica baseado em um tempo configuravel.
+
+### react-hook-form & yup
+
+para os formulários foi usado o [react-hook-form](https://react-hook-form.com/) para gerenciar o estado do formulario, essa biblioteca possibilita um controle maior dos campos, dos erros relacionados além de ter uma boa integração com o [yup](https://github.com/jquense/yup), que é usado para fazer a validação dos campos, possibilitando validações padrões além das validações personalizadas.
+
+<br/>
+
+# Testes Automatizados
+
+Foram feitos testes unitários em alguns componentes.
+
+Os testes automitzados foram feitos usando [jest](https://jestjs.io/pt-BR/), e [react-testing-library](https://testing-library.com/).
+
+para rodar os testes basta usar um dos comandos a baixo no terminal dentro da pasta do projeto e ele retornara uma analise dos arquivos do projeto que foram testados e dos que precisam ser testados.
+
+```
+npm test
+# ou
+yarn test
+```
