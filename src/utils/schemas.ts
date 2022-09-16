@@ -3,11 +3,11 @@ import { validateCPF, validatePastDate, validatePhoneFormat } from './Validation
 export const createUserFormSchema = yup.object().shape({
   name: yup.string().required('Nome Obrigatório'),
   birth_date: yup.string().required('Data de Nascimento Obrigatória')
-    .test("birth_date-futere-date", "A data de Nascimento deve ser menor que a data atual", birth_date => validatePastDate(new Date(birth_date))),
-  phone: yup.string().required("Telefone Obrigatório").test('phone-lenght', "Formato do telefone invalido", phone => validatePhoneFormat(phone)),
+    .test("birth_date-futere-date", "A data de Nascimento deve ser menor que a data atual", birth_date => validatePastDate(new Date(birth_date??''))),
+  phone: yup.string().required("Telefone Obrigatório").test('phone-lenght', "Formato do telefone invalido", phone => validatePhoneFormat(phone??'')),
   cpf: yup.string().required("CPF Obrigatorio").test('test-invalid-cpf',
     'CPF inválido',
-    cpf => validateCPF(cpf)),
+    cpf => validateCPF(cpf??'')),
   cnh_number: yup.string().required("Número da CNH Obrigatório"),
   cnh_category: yup.string().required("Categoria da CNH Obrigatório"),
   cnh_expires_at: yup.string().required('Data de Vencimento da CNH Obrigatório'),
