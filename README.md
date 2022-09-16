@@ -12,10 +12,10 @@ Primeiramente é preciso ter o [nodejs](https://nodejs.org/en/download/). e o [g
 
 ```bash
 # abra o terminal/cmd e clone o repositorio do projeto usando o git
-$ git clone https://github.com/carlos0406/nlw6-react nlw6
+$ git clone https://github.com/carlos0406/teste-truckpad.git
 
 # Acesse a pasta do projeto no terminal/cmd com o comando
-$ cd truckpad
+$ cd teste-truckpad
 
 # Em Seguida é preciso fazer a instalação das dependencias, para isso use o comando
 $ npm install
@@ -26,7 +26,7 @@ $ yarn
 $ npm run dev
 #ou
 $ yarn dev
-# O servidor inciará na porta:3000 - caso nao abra automaticamente acesse <http://localhost:3000>
+# O servidor inciará na porta:3000 - caso nao abra automaticamente acesse <http://localhost:3000> em seu navegador
 ```
 
 <br/>
