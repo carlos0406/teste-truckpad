@@ -8,9 +8,9 @@ import { queryClient } from '../services/queryClient'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-if (process.env.NODE_ENV === 'development') {
-  makeServer()
-}
+
+makeServer()
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
