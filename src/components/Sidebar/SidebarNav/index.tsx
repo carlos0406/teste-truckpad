@@ -4,8 +4,8 @@ import {
   RiDashboardLine,
   RiAddLine
 } from 'react-icons/ri'
-import { NavLink } from './NavLink'
-import { NavSection } from './NavSection'
+import { NavLink } from '../NavLink'
+import { NavSection } from '../NavSection'
 
 export function SideBarNav() {
   return (

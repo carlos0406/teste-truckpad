@@ -11,7 +11,7 @@ export default {
   moduleNameMapper: {
     '\\.(scss|css|sass)': 'identity-obj-proxy'
   },
-  // setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'],
+   setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'],
   testEnvironment: 'jsdom',
   collectCoverage: true,
   collectCoverageFrom: [

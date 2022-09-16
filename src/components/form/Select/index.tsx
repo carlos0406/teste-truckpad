@@ -31,6 +31,7 @@ const InputBase: ForwardRefRenderFunction<HTMLSelectElement, InputProps> = (
         variant="flushed"
         ref={ref}
         size="lg"
+        data-testid="select"
       >{children}
       </ChakraSelect >
 

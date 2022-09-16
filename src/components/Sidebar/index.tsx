@@ -9,15 +9,13 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import { useSideBarDrawer } from '../../contexts/SidebarDrawerContext'
+import { useSizes } from '../../hooks/useSizes'
 import { SideBarNav } from './SidebarNav'
 
 export function Sidebar() {
   const { isOpen, onClose } = useSideBarDrawer()
-  const isDrawerSidebar = useBreakpointValue({
-    base: true,
-    lg: false
-  })
-  if (isDrawerSidebar) {
+  const { isNotWideVersion } = useSizes();
+  if (isNotWideVersion) {
     return (
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
@@ -25,7 +23,7 @@ export function Sidebar() {
             <DrawerCloseButton mt="6" />
             <DrawerHeader>Navegação</DrawerHeader>
             <DrawerBody>
-              <SideBarNav />
+              <SideBarNav data-testid="drawer-sidebar" />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
@@ -33,7 +31,7 @@ export function Sidebar() {
     )
   }
   return (
-    <Box as="aside" w="32" mr="8">
+    <Box as="aside" w="32" mr="8" data-testid="sidebar">
       <SideBarNav />
     </Box>
   )

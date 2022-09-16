@@ -5,6 +5,12 @@ export function useSizes(){
     base: false,
     lg: true,
   })
+
+  const isNotWideVersion = useBreakpointValue({
+    base: true,
+    lg: false
+  })
+
   const isMdVersion = useBreakpointValue({
     base: false,
     md: true
@@ -14,6 +20,6 @@ export function useSizes(){
     sm: false
   })
   return {
-    isWideVersion,isMdVersion,isSmallVersion
+    isWideVersion,isMdVersion,isSmallVersion,isNotWideVersion
   }
 }

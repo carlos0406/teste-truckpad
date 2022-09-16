@@ -3,12 +3,10 @@ import { Logo } from './Logo'
 import { Profile } from './Profile'
 import { useSideBarDrawer } from '../../contexts/SidebarDrawerContext'
 import { RiMenuLine } from 'react-icons/ri'
+import { useSizes } from '../../hooks/useSizes'
 export function Header() {
   const { onOpen } = useSideBarDrawer()
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    lg: true
-  })
+  const { isWideVersion } = useSizes()
   return (
     <Flex
       w="100%"
@@ -19,6 +17,7 @@ export function Header() {
       justify="space-between"
       as="header"
       bg="yellow.400"
+      data-testid="header"
     >
       {!isWideVersion && (
         <IconButton
@@ -27,6 +26,7 @@ export function Header() {
           variant="un"
           onClick={onOpen}
           aria-label="Open Navigation"
+          data-testid="iconbutton"
           mr="2"
         />
       )}

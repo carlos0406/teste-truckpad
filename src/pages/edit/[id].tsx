@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Driver } from "../../@types/Driver";
-import Form from "../../components/form";
+import { Form } from "../../components/form";
 import { api } from "../../services/api";
 
 export default function Edit() {

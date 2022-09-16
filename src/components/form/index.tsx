@@ -12,7 +12,6 @@ import { Input } from '../../components/form/Input'
 import { Select } from '../../components/form/Select'
 import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
@@ -54,7 +53,7 @@ interface FormProps {
 }
 
 
-export default function Form({ driver }: FormProps) {
+export function Form({ driver }: FormProps) {
   const router = useRouter()
   const createDriver = useMutation(
     async (driverForm: CreateDriverFormData) => {
@@ -175,7 +174,9 @@ export default function Form({ driver }: FormProps) {
   async function handleInativeUser() {
     await inativeDriver.mutateAsync()
   }
-  const { isWideVersion } = useSizes();
+
+  const { isWideVersion } = useSizes()
+
   return (
     <Box>
       <Header />
@@ -192,7 +193,7 @@ export default function Form({ driver }: FormProps) {
         >
 
           <VStack spacing="8">
-            <Text w='100%' fontSize='20'>Dados Pessoais</Text>
+            <Text w='100%' fontSize='20'>Dados Pessoais:</Text>
             <SimpleGrid minChildWidth={["200px", "320px"]} spacing={['6', '8']} w="100%">
               <Input
                 inputName="name"
