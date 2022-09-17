@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Driver } from "../../@types/Driver";
 import { Form } from "../../components/form";
 import { api } from "../../services/api";
-
 export default function Edit() {
   const [driver, setDriver] = useState<null | Driver>(null)
-
+  const router = useRouter()
   let path = useRouter().asPath
   path = path.replace('/', '')
   const id = path.split('/')[1]
@@ -21,7 +21,18 @@ export default function Edit() {
         }
         setDriver(formatedDriver)
       }
-      )
+      ).catch(() => {
+        toast.error('Erro ao entrar na tela de edição', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        router.push('/')
+      })
     }
   }, [])
   if (driver == null) {
